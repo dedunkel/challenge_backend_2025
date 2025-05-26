@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     
     # Third party apps
     'rest_framework',
-    'drf_yasg',
+    'drf_spectacular',
     
     # Local apps
     'user',
@@ -141,6 +141,7 @@ AUTH_USER_MODEL = 'user.User'
 
 # REST Framework settings
 REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
     ],
