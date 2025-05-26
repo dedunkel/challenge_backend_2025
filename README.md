@@ -189,12 +189,6 @@ python manage.py test article
 python manage.py test comment
 ```
 
-3. 테스트 커버리지 확인
-```bash
-coverage run manage.py test
-coverage report
-```
-
 각 API 엔드포인트에 대한 테스트는 다음 사항들을 검증합니다:
 - 정상적인 요청에 대한 응답
 - 잘못된 요청에 대한 에러 처리
