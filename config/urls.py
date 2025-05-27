@@ -15,8 +15,29 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+from rest_framework.routers import DefaultRouter
+from user.views import @@@@@빈칸@@@@@
+from article.views import @@@@@빈칸@@@@@
+from comment.views import @@@@@빈칸@@@@@
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
+
+router = DefaultRouter()
+router.register(r'articles', @@@@@빈칸@@@@@)
+router.register(r'articles/(?P<article_pk>\d+)/comments', @@@@@빈칸@@@@@, basename='article-comments')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include(router.urls)),
+    path('api/users/', @@@@@빈칸@@@@@, name='user-registration'),
+    path('api/users/login/', @@@@@빈칸@@@@@, name='user-login'),
+    path('api/users/logout/', @@@@@빈칸@@@@@, name='user-logout'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += [
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/schema/swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 ]
