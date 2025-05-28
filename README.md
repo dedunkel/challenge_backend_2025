@@ -26,11 +26,8 @@
    - 댓글 수정 (PUT /api/articles/{article_id}/comments/{id}/, name='article-comments-detail')
    - 댓글 삭제 (DELETE /api/articles/{article_id}/comments/{id}/, name='article-comments-detail')
 
-4. drf-yasg를 사용한 API 문서화
-    - https://drf-yasg.readthedocs.io/en/stable/
-    - Swagger UI: /swagger/ (name='schema-swagger-ui')
-    - ReDoc: /redoc/ (name='schema-redoc')
-    - OpenAPI Schema: /swagger.json/ (name='schema-json')
+4. drf-spectacular를 사용한 API 문서화
+    - drf-spectacular.readthedocs.io/en/latest/
 
 ## 개발 시 참고 사항
 
