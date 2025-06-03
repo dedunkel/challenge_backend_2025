@@ -6,15 +6,15 @@ from .serializers import ArticleSerializer, ArticleListSerializer
 
 # Create your views here.
 
-class ArticleViewSet(@@@@@빈칸@@@@@):
-    queryset = @@@@@빈칸@@@@@
+class ArticleViewSet(viewsets.ModelViewSet):
+    queryset = Article.objects.all().order_by('-created_at')
     serializer_class = ArticleSerializer
-    permission_classes = [@@@@@빈칸@@@@@]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get_serializer_class(self):
         if self.action == 'list':
-            return @@@@@빈칸@@@@@
-        return @@@@@빈칸@@@@@
+            return ArticleListSerializer
+        return ArticleSerializer
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)

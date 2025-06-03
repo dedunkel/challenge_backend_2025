@@ -2,21 +2,21 @@ from django.shortcuts import render
 from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
 from .models import Comment
-from .serializers import @@@@@빈칸@@@@@
+from .serializers import CommentSerializer, CommentListSerializer
 
 # Create your views here.
 
-class CommentViewSet(@@@@@빈칸@@@@@):
-    serializer_class = @@@@@빈칸@@@@@
-    permission_classes = [@@@@@빈칸@@@@@] # 로그인되어 있어야 댓글 작성 가능
+class CommentViewSet(viewsets.ModelViewSet):
+    serializer_class = CommentSerializer
+    permission_classes = [permissions.IsAuthenticated] # 로그인되어 있어야 댓글 작성 가능
 
     def get_queryset(self):
         return Comment.objects.filter(article_id=self.kwargs['article_pk']).order_by('-created_at')
 
     def get_serializer_class(self):
         if self.action == 'list':
-            return @@@@@빈칸@@@@@
-        return @@@@@빈칸@@@@@
+            return CommentListSerializer
+        return CommentSerializer
 
     def perform_create(self, serializer):
         serializer.save(

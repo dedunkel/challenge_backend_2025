@@ -7,9 +7,9 @@ def article_thumbnail_path(instance, filename):
 
 class Article(models.Model):
     title = models.CharField(max_length=200)
-    content = @@@@@빈칸@@@@@
+    content = models.TextField()
     thumbnail = models.ImageField(upload_to=article_thumbnail_path, null=True, blank=True)
-    author = models.ForeignKey(@@@@@빈칸@@@@@, on_delete=@@@@@빈칸@@@@@, related_name='articles')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='articles')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

@@ -2,25 +2,25 @@ from django.shortcuts import render
 from rest_framework import status, generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.permissions import @@@@@빈칸@@@@@
+from rest_framework.permissions import AllowAny
 from django.contrib.auth import login, logout
-from .serializers import @@@@@빈칸@@@@@
+from .serializers import UserRegistrationSerializer, UserLoginSerializer, UserSerializer
 
 # Create your views here.
 
 class UserRegistrationView(generics.CreateAPIView):
-    permission_classes = [@@@@@빈칸@@@@@]
-    serializer_class = @@@@@빈칸@@@@@
+    permission_classes = [AllowAny]
+    serializer_class = UserRegistrationSerializer
 
 class UserLoginView(APIView):
-    permission_classes = [@@@@@빈칸@@@@@]
+    permission_classes = [AllowAny]
 
     def post(self, request):
-        serializer = @@@@@빈칸@@@@@(data=request.data)
+        serializer = UserLoginSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.validated_data['user']
             login(request, user)
-            return Response(@@@@@빈칸@@@@@(user).data)
+            return Response(UserSerializer(user).data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class UserLogoutView(APIView):

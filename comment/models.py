@@ -1,11 +1,11 @@
 from django.db import models
 from user.models import User
-from article.models import @@@@@빈칸@@@@@
+from article.models import Article
 
-class Comment(@@@@@빈칸@@@@@):
+class Comment(models.Model):
     content = models.TextField()
-    article = @@@@@빈칸@@@@@(@@@@@빈칸@@@@@, on_delete=models.CASCADE, related_name='comments')
-    author = @@@@@빈칸@@@@@(@@@@@빈칸@@@@@, on_delete=models.CASCADE, related_name='comments')
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

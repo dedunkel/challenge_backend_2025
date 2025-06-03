@@ -19,21 +19,21 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
-from user.views import @@@@@빈칸@@@@@
-from article.views import @@@@@빈칸@@@@@
-from comment.views import @@@@@빈칸@@@@@
+from user.views import UserRegistrationView, UserLoginView, UserLogoutView
+from article.views import ArticleViewSet
+from comment.views import CommentViewSet
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 
 router = DefaultRouter()
-router.register(r'articles', @@@@@빈칸@@@@@)
-router.register(r'articles/(?P<article_pk>\d+)/comments', @@@@@빈칸@@@@@, basename='article-comments')
+router.register(r'articles', ArticleViewSet)
+router.register(r'articles/(?P<article_pk>\d+)/comments', CommentViewSet, basename='article-comments')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('api/users/', @@@@@빈칸@@@@@, name='user-registration'),
-    path('api/users/login/', @@@@@빈칸@@@@@, name='user-login'),
-    path('api/users/logout/', @@@@@빈칸@@@@@, name='user-logout'),
+    path('api/users/', UserRegistrationView.as_view(), name='user-registration'),
+    path('api/users/login/', UserLoginView.as_view(), name='user-login'),
+    path('api/users/logout/', UserLogoutView.as_view(), name='user-logout'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [

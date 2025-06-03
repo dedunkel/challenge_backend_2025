@@ -2,13 +2,13 @@ from rest_framework import serializers
 from .models import Article
 from user.serializers import UserSerializer
 
-class ArticleSerializer(@@@@@빈칸@@@@@):
+class ArticleSerializer(serializers.ModelSerializer):
     author = UserSerializer(read_only=True)
     thumbnail_url = serializers.SerializerMethodField()
 
     class Meta:
-        model = @@@@@빈칸@@@@@
-        fields = (@@@@@빈칸@@@@@)
+        model = Article
+        fields = ('id', 'title', 'content', 'author', 'thumbnail', 'thumbnail_url', 'created_at', 'updated_at')
         read_only_fields = ('id', 'author', 'created_at', 'updated_at')
         extra_kwargs = {
             'thumbnail': {'required': False}
@@ -31,17 +31,17 @@ class ArticleSerializer(@@@@@빈칸@@@@@):
                 validated_data['thumbnail'] = None
         return super().update(instance, validated_data)
 
-class ArticleListSerializer(@@@@@빈칸@@@@@):
+class ArticleListSerializer(serializers.ModelSerializer):
     author = UserSerializer(read_only=True)
     comment_count = serializers.SerializerMethodField()
     thumbnail_url = serializers.SerializerMethodField()
 
     class Meta:
-        model = @@@@@빈칸@@@@@
+        model = Article
         fields = ('id', 'title', 'author', 'created_at', 'comment_count', 'thumbnail_url')
 
     def get_comment_count(self, obj):
-        return @@@@@빈칸@@@@@
+        return obj.comments.count()
 
     def get_thumbnail_url(self, obj):
         if obj.thumbnail:
